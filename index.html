@@ -2,265 +2,308 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Planilha Hoje - Exel / PROCV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050711">
+    <title>NAVE ESCAPE // SYSTEM BREACH</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- BOTÃO DE SOM -->
-    <button id="soundBtn" class="sound-btn">🔊</button>
+    <div id="app">
+        <canvas id="spaceShader"></canvas>
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
 
-    <!-- BOTÃO TELA CHEIA - MOBILE -->
-    <button id="fullscreenBtn" class="fullscreen-btn">⛶</button>
+        <!-- MENU PRINCIPAL -->
+        <section id="menuScreen" class="screen active">
+            <div class="menu-top">
+                <div class="brand">
+                    <span class="brand-icon">✦</span>
+                    <span>NAVE<span class="cyan">ESCAPE</span></span>
+                </div>
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    SISTEMA ONLINE
+                </div>
+            </div>
 
+            <div class="menu-content">
+                <div class="eyebrow">PROJETO DE COMBATE ESPACIAL // 2097</div>
 
-    <!-- POPUP DE BOAS-VINDAS -->
-    <div id="welcomeOverlay" class="welcome-overlay">
+                <h1 class="main-title">
+                    SYSTEM<br>
+                    <span>BREACH</span>
+                </h1>
 
-        <div class="welcome-box">
-
-            <button id="closeWelcome" class="welcome-close">✕</button>
-
-            <div class="welcome-icon">🚀</div>
-
-            <h2>BEM-VINDO</h2>
-
-            <p>
-                Prepare-se para sobreviver aos meteoros,
-                enfrentar bosses e tentar chegar aos
-                <strong>2000 pontos...</strong>
-            </p>
-
-            <p class="welcome-warning">
-                ⚠️ O jogo não vai pegar leve.
-            </p>
-
-            <button id="enterGame" class="welcome-btn">
-                ENTRAR NO JOGO
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- MENU -->
-    <div id="menu" class="screen">
-
-        <div class="menu-content">
-
-            <h1>🚀 System of Burla</h1>
-
-            <p class="subtitle">
-                Jogo disfarçado de site, clicle em "Planilha hoje" para ir ao site, e no rodapé para voltar
-            </p>
-
-            <button id="startBtn" class="main-btn">
-                JOGAY
-            </button>
-
-            <div class="controls">
-
-                <h3>CONTROLES</h3>
-
-                <p class="pc-controls">
-                    ⬅️ ➡️ ou A / D — Mover
+                <p class="menu-description">
+                    O espaço não perdoa erros.<br>
+                    Sua missão é sobreviver.
                 </p>
 
-                <p class="pc-controls">
-                    SPACE — Atirar
+                <div class="ship-preview">
+                    <div class="preview-ring ring-one"></div>
+                    <div class="preview-ring ring-two"></div>
+                    <div class="preview-core">✦</div>
+                    <div class="preview-label">PROTO-07 // INTERCEPTOR</div>
+                </div>
+
+                <div class="menu-actions">
+                    <button id="startButton" class="primary-button">
+                        <span>INICIAR MISSÃO</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+
+                    <div class="secondary-actions">
+                        <button id="shipButton" class="secondary-button">NAVE: PROTO-07</button>
+                        <button id="garageButton" class="secondary-button">HANGAR</button>
+                        <button id="settingsButton" class="secondary-button">CONFIGURAÇÕES</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-bottom">
+                <div>RECORD: <strong id="menuHighScore">0</strong></div>
+                <div>CRÉDITOS: <strong id="menuCredits">0</strong></div>
+                <div class="version">NAVE ESCAPE // V2.0</div>
+            </div>
+        </section>
+
+        <!-- HANGAR -->
+        <section id="garageScreen" class="screen">
+            <div class="panel">
+                <button class="back-button" data-back>← VOLTAR</button>
+                <div class="eyebrow">CENTRO DE PERSONALIZAÇÃO</div>
+                <h2>HANGAR <span class="cyan">07</span></h2>
+                <p class="muted">Configure sua nave antes da próxima missão.</p>
+
+                <div class="garage-ship" id="garageShip">✦</div>
+                <h3 id="garageShipName">PROTO-07</h3>
+                <p id="garageShipDescription" class="muted">Interceptor equilibrado.</p>
+
+                <div class="ship-selector">
+                    <button id="previousShip">‹</button>
+                    <span id="shipCounter">01 / 03</span>
+                    <button id="nextShip">›</button>
+                </div>
+
+                <div class="upgrade-list">
+                    <div class="upgrade-row">
+                        <div>
+                            <strong>BLINDAGEM</strong>
+                            <small>Mais resistência a impactos</small>
+                        </div>
+                        <span id="armorLevel">NÍVEL 1</span>
+                        <button id="buyArmor">MELHORAR · 100</button>
+                    </div>
+
+                    <div class="upgrade-row">
+                        <div>
+                            <strong>PROPULSÃO</strong>
+                            <small>Maior velocidade de movimento</small>
+                        </div>
+                        <span id="engineLevel">NÍVEL 1</span>
+                        <button id="buyEngine">MELHORAR · 100</button>
+                    </div>
+
+                    <div class="upgrade-row">
+                        <div>
+                            <strong>ARMAMENTO</strong>
+                            <small>Mais dano por disparo</small>
+                        </div>
+                        <span id="weaponLevel">NÍVEL 1</span>
+                        <button id="buyWeapon">MELHORAR · 100</button>
+                    </div>
+                </div>
+
+                <div class="credits-line">CRÉDITOS DISPONÍVEIS: <strong id="garageCredits">0</strong></div>
+            </div>
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section id="settingsScreen" class="screen">
+            <div class="panel settings-panel">
+                <button class="back-button" data-back>← VOLTAR</button>
+                <div class="eyebrow">SISTEMA</div>
+                <h2>CONFIGURAÇÕES</h2>
+
+                <div class="setting-row">
+                    <span>Música</span>
+                    <button id="musicToggle" class="toggle-button">LIGADA</button>
+                </div>
+
+                <div class="setting-row">
+                    <span>Efeitos sonoros</span>
+                    <button id="sfxToggle" class="toggle-button">LIGADOS</button>
+                </div>
+
+                <div class="setting-row">
+                    <span>Partículas</span>
+                    <button id="effectsToggle" class="toggle-button">ALTAS</button>
+                </div>
+
+                <p class="muted small-text">
+                    As configurações são salvas automaticamente neste dispositivo.
+                </p>
+            </div>
+        </section>
+
+        <!-- JOGO -->
+        <section id="gameScreen" class="screen">
+            <div class="game-topbar">
+                <div class="game-brand">N<span class="cyan">/</span>E</div>
+
+                <div class="hud-block">
+                    <small>PONTUAÇÃO</small>
+                    <strong id="scoreDisplay">000000</strong>
+                </div>
+
+                <div class="hud-block">
+                    <small>RECORDE</small>
+                    <strong id="recordDisplay">000000</strong>
+                </div>
+
+                <div class="hud-block">
+                    <small>SETOR</small>
+                    <strong id="waveDisplay">01</strong>
+                </div>
+
+                <button id="pauseButton" class="pause-button">Ⅱ</button>
+            </div>
+
+            <div class="game-status">
+                <div class="health-area">
+                    <span>INTEGRIDADE</span>
+                    <div class="health-track">
+                        <div id="healthBar" class="health-fill"></div>
+                    </div>
+                    <strong id="healthText">100%</strong>
+                </div>
+
+                <div class="weapon-area">
+                    <span>ARMAMENTO</span>
+                    <strong id="weaponDisplay">PULSAR MK-I</strong>
+                </div>
+
+                <div class="dash-area">
+                    <span>IMPULSO</span>
+                    <div class="dash-track">
+                        <div id="dashBar" class="dash-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bossHud" class="boss-hud hidden">
+                <div class="boss-title">
+                    <span>ALVO PRIORITÁRIO</span>
+                    <strong id="bossName">VOID TITAN</strong>
+                </div>
+                <div class="boss-track">
+                    <div id="bossHealthBar"></div>
+                </div>
+            </div>
+
+            <div id="bossWarning" class="boss-warning hidden">
+                <span>⚠</span> AMEAÇA DE NÍVEL CRÍTICO DETECTADA <span>⚠</span>
+            </div>
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div class="game-bottom">
+                <span id="comboDisplay">COMBO x1</span>
+                <span id="coinDisplay">◈ 0</span>
+                <span id="powerDisplay">ENERGIA 100%</span>
+            </div>
+
+            <div id="pauseOverlay" class="overlay hidden">
+                <div class="overlay-card">
+                    <div class="eyebrow">SINAL INTERROMPIDO</div>
+                    <h2>PAUSADO</h2>
+                    <button id="resumeButton" class="primary-button">CONTINUAR →</button>
+                    <button id="quitButton" class="secondary-button">ABANDONAR MISSÃO</button>
+                </div>
+            </div>
+
+            <div id="gameOverOverlay" class="overlay hidden">
+                <div class="overlay-card">
+                    <div class="eyebrow">CONEXÃO PERDIDA</div>
+                    <h2>MISSÃO <span class="danger">ENCERRADA</span></h2>
+                    <p class="muted">Sua nave não conseguiu resistir.</p>
+
+                    <div class="result-grid">
+                        <div><small>PONTUAÇÃO</small><strong id="finalScore">0</strong></div>
+                        <div><small>SETOR ALCANÇADO</small><strong id="finalWave">1</strong></div>
+                        <div><small>CRÉDITOS</small><strong id="finalCredits">0</strong></div>
+                    </div>
+
+                    <button id="retryButton" class="primary-button">TENTAR NOVAMENTE →</button>
+                    <button id="gameOverMenuButton" class="secondary-button">VOLTAR AO MENU</button>
+                </div>
+            </div>
+
+            <!-- CONTROLES MOBILE -->
+            <div class="mobile-controls">
+                <div class="movement-controls">
+                    <button id="moveLeft" class="control-button">◀</button>
+                    <button id="moveRight" class="control-button">▶</button>
+                </div>
+                <div class="action-controls">
+                    <button id="dashMobile" class="control-button dash-control">DASH</button>
+                    <button id="shootMobile" class="control-button shoot-control">FIRE</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANILHA HOJE -->
+        <button id="planilhaOpenButton" class="planilha-open">
+            <span>▤</span> PLANILHA HOJE
+        </button>
+
+        <section id="planilhaOverlay" class="planilha-overlay hidden">
+            <header class="ph-header">
+                <div class="ph-logo">PLANILHA<span>HOJE</span></div>
+                <button id="closePlanilha" class="ph-close">✕</button>
+            </header>
+
+            <main class="ph-content">
+                <div class="ph-category">TECNOLOGIA · PRODUTIVIDADE</div>
+                <h2>Domine o Excel: como usar a função PROCV</h2>
+                <p class="ph-subtitle">
+                    Aprenda a encontrar informações em grandes tabelas de maneira rápida.
                 </p>
 
-                <p class="mobile-controls-text">
-                    📱 Toque nos botões para jogar
+                <div class="ph-image">
+                    <div class="sheet-icon">▦</div>
+                    <span>PLANILHAS // GUIA PRÁTICO</span>
+                </div>
+
+                <h3>O que é PROCV?</h3>
+                <p>
+                    A função PROCV permite procurar um valor na primeira coluna de uma
+                    tabela e retornar uma informação localizada em outra coluna da mesma linha.
                 </p>
 
-            </div>
+                <div class="formula">
+                    =PROCV(valor_procurado; matriz_tabela; núm_índice_coluna; FALSO)
+                </div>
 
-        </div>
+                <h3>Quando utilizar?</h3>
+                <p>
+                    Imagine uma planilha com códigos de produtos, nomes e preços.
+                    Com o PROCV, você pode informar o código de um produto e encontrar
+                    automaticamente seu preço.
+                </p>
 
+                <button id="returnToGame" class="ph-return">
+                    ← RETORNAR AO NAVE ESCAPE
+                </button>
+            </main>
+        </section>
     </div>
 
-
-    <!-- JOGO -->
-    <div id="game" class="screen hidden">
-
-        <canvas id="gameCanvas"></canvas>
-
-
-        <!-- HUD -->
-        <div id="hud">
-
-            <div class="hud-item">
-                PONTOS:
-                <span id="score">0</span>
-            </div>
-
-            <div class="hud-item">
-                VIDAS:
-                <span id="lives">3</span>
-            </div>
-
-            <div class="hud-item">
-                RECORDE:
-                <span id="highScore">0</span>
-            </div>
-
-            <div class="hud-item power">
-                POWER:
-                <span id="powerLevel">1</span>
-            </div>
-
-        </div>
-
-
-        <!-- HUD DO BOSS -->
-        <div id="bossHud" class="boss-hud hidden">
-
-            <div class="boss-name" id="bossName">
-                BOSS
-            </div>
-
-            <div class="boss-bar-container">
-
-                <div id="bossBar" class="boss-bar"></div>
-
-            </div>
-
-            <div class="boss-hp-text">
-                HP:
-                <span id="bossHpText">0</span>
-            </div>
-
-        </div>
-
-
-        <!-- AVISO DE BOSS -->
-        <div id="bossWarning" class="boss-warning hidden">
-            ⚠️ BOSS À CAMINHO ⚠️
-        </div>
-
-
-        <!-- CONTROLES MOBILE -->
-        <div id="mobileControls">
-
-            <button
-                id="mobileLeft"
-                class="mobile-control move-button">
-                🗿
-            </button>
-
-            <button
-                id="mobileShoot"
-                class="mobile-control shoot-button">
-                🔥
-            </button>
-
-            <button
-                id="mobileRight"
-                class="mobile-control move-button">
-                💩
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- GAME OVER -->
-    <div id="gameOver" class="screen hidden">
-
-        <div class="gameover-content">
-
-            <h1>💥 PERDEU FI</h1>
-
-            <p>
-                Pontuação:
-                <strong id="finalScore">0</strong>
-            </p>
-
-            <p>
-                Recorde:
-                <strong id="finalHighScore">0</strong>
-            </p>
-
-            <button id="restartBtn" class="main-btn">
-                JOGAR NOVAMENTE
-            </button>
-
-            <button id="menuBtn" class="secondary-btn">
-                MENU
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- RODAPÉ -->
-    <div class="footer-left">
-
-        <strong>Versão:</strong>
-
-        <br>
-
-        V1.0.2.3
-
-        <br>
-
-    
-
-        <br>
-
-       
-
-        <br>
-
-       
-
-    </div>
-
-
-    <div class="footer-right">
-
-        Criado e desenvolvido com total auxílio do ChatGPT
-
-    </div>
-
-
-    <!-- ÁUDIOS -->
-
-    <audio id="menuMusic" loop preload="auto">
-
-        <source
-            src="music/MS1stM.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
-
-    <audio id="gameMusic" loop preload="auto">
-
-        <source
-            src="music/NoSurprises.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
-
-    <audio id="laserSound" preload="auto">
-
-        <source
-            src="music/laser.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
+    <audio id="menuMusic" src="music/MS1stM.mp3" loop preload="auto"></audio>
+    <audio id="gameMusic" src="music/NoSurprises.mp3" loop preload="auto"></audio>
+    <audio id="laserSound" src="music/laser.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
