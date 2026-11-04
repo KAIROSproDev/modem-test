@@ -1557,7 +1557,7 @@ const planilhaStyle = document.createElement("style");
 planilhaStyle.textContent = `
 #planilhaOpenButton {
     position: fixed !important;
-    top: 20px !important;
+    top: 25vh !important;
     left: 20px !important;
     right: auto !important;
     bottom: auto !important;
@@ -1868,13 +1868,26 @@ Experimente criar uma pequena tabela e testar diferentes valores.
 Aprender fazendo é uma das melhores maneiras de dominar o Excel.
 </p>
 <footer class="ph-footer">
-© 2026 Planilha Hoje — Conteúdo educativo sobre Excel e produtividade.
-<br>
-Este é um site demonstrativo integrado ao jogo Nave Escape.
+    <span
+        id="ph-voltar-jogo"
+        title="Voltar ao Nave Escape"
+        style="cursor: pointer;"
+    >
+        © 2026 Planilha Hoje — Conteúdo educativo sobre Excel e produtividade.
+        <br>
+        Este é um site educativo.
+    </span>
 </footer>
 </main>
 `;
 document.body.appendChild(planilhaSiteOverlay);
+const botaoVoltarJogo = document.getElementById("ph-voltar-jogo");
+
+if (botaoVoltarJogo) {
+    botaoVoltarJogo.addEventListener("click", () => {
+        fecharPlanilhaSite();
+    });
+}
 let planilhaGameWasRunning = false;
 let planilhaMenuMusicWasPlaying = false;
 let planilhaGameMusicWasPlaying = false;
