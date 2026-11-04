@@ -1,198 +1,266 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como usar o PROCV no Excel | Planilha Hoje</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nova guia</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="header">
-    <div class="logo">planilha<span>hoje</span></div>
-    <nav>
-        <a href="#">Início</a>
-        <a href="#">Tecnologia</a>
-        <a href="#">Tutoriais</a>
-        <a href="#">Produtividade</a>
-    </nav>
-</header>
+    <!-- BOTÃO DE SOM -->
+    <button id="soundBtn" class="sound-btn">🔊</button>
 
-<main class="container">
+    <!-- BOTÃO TELA CHEIA - MOBILE -->
+    <button id="fullscreenBtn" class="fullscreen-btn">⛶</button>
 
-    <div class="category">TECNOLOGIA / MICROSOFT EXCEL</div>
 
-    <h1>Como utilizar a função PROCV no Excel para localizar informações em uma tabela?</h1>
+    <!-- POPUP DE BOAS-VINDAS -->
+    <div id="welcomeOverlay" class="welcome-overlay">
 
-    <p class="subtitle">
-        Aprenda a encontrar dados de forma rápida usando uma das funções
-        mais conhecidas das planilhas eletrônicas.
-    </p>
+        <div class="welcome-box">
 
-    <div class="author">
-        <div class="avatar">RM</div>
-        <div>
-            <strong>Rafael Martins</strong>
-            <span>Redator de tecnologia • 3 de novembro de 2026</span>
+            <button id="closeWelcome" class="welcome-close">✕</button>
+
+            <div class="welcome-icon">🚀</div>
+
+            <h2>BEM-VINDO</h2>
+
+            <p>
+                Prepare-se para sobreviver aos meteoros,
+                enfrentar bosses e tentar chegar aos
+                <strong>2000 pontos...</strong>
+            </p>
+
+            <p class="welcome-warning">
+                ⚠️ O jogo não vai pegar leve.
+            </p>
+
+            <button id="enterGame" class="welcome-btn">
+                ENTRAR NO JOGO
+            </button>
+
         </div>
+
     </div>
 
-    <div class="article-info">7 minutos de leitura</div>
 
-    <div class="hero">
-        <div class="excel-icon">X</div>
-        <div>
-            <span>GUIA PRÁTICO</span>
-            <h2>Domine o PROCV</h2>
-            <p>Encontre qualquer informação em uma tabela.</p>
+    <!-- MENU -->
+    <div id="menu" class="screen">
+
+        <div class="menu-content">
+
+            <h1>🚀 System of Burla</h1>
+
+            <p class="subtitle">
+                Sobreviva aos meteoros, destrua tudo e faça a maior pontuação!
+            </p>
+
+            <button id="startBtn" class="main-btn">
+                JOGAY
+            </button>
+
+            <div class="controls">
+
+                <h3>CONTROLES</h3>
+
+                <p class="pc-controls">
+                    ⬅️ ➡️ ou A / D — Mover
+                </p>
+
+                <p class="pc-controls">
+                    SPACE — Atirar
+                </p>
+
+                <p class="mobile-controls-text">
+                    📱 Toque nos botões para jogar
+                </p>
+
+            </div>
+
         </div>
+
     </div>
 
-    <article>
 
-        <p>
-            O Excel é uma ferramenta muito usada em empresas, escolas e
-            no dia a dia. Entre suas várias funções, o PROCV se destaca
-            por permitir que o usuário encontre informações dentro de
-            grandes tabelas sem precisar procurar linha por linha.
-        </p>
+    <!-- JOGO -->
+    <div id="game" class="screen hidden">
 
-        <p>
-            Mas como essa função funciona? E como podemos usá-la na
-            prática? É isso que vamos explicar neste guia.
-        </p>
+        <canvas id="gameCanvas"></canvas>
 
-        <h2>O que é a função PROCV?</h2>
 
-        <p>
-            PROCV significa <strong>Procura Vertical</strong>. Sua função
-            é buscar um valor na primeira coluna de uma tabela e retornar
-            uma informação que esteja em outra coluna da mesma linha.
-        </p>
+        <!-- HUD -->
+        <div id="hud">
 
-        <p>
-            Imagine uma lista de produtos com seus códigos e preços.
-            Em vez de procurar manualmente o preço de cada item, você
-            pode usar o PROCV para encontrar o resultado automaticamente.
-        </p>
+            <div class="hud-item">
+                PONTOS:
+                <span id="score">0</span>
+            </div>
 
-        <h2>Como funciona a fórmula?</h2>
+            <div class="hud-item">
+                VIDAS:
+                <span id="lives">3</span>
+            </div>
 
-        <div class="formula">
-            <span>FÓRMULA DO PROCV</span>
-            <code>=PROCV(valor_procurado; matriz_tabela; núm_índice_coluna; [procurar_intervalo])</code>
+            <div class="hud-item">
+                RECORDE:
+                <span id="highScore">0</span>
+            </div>
+
+            <div class="hud-item power">
+                POWER:
+                <span id="powerLevel">1</span>
+            </div>
+
         </div>
 
-        <p>Veja o que cada parte significa:</p>
 
-        <ul>
-            <li><strong>Valor procurado:</strong> o dado que você quer encontrar.</li>
-            <li><strong>Matriz tabela:</strong> o intervalo onde estão os dados.</li>
-            <li><strong>Número da coluna:</strong> a coluna que contém a resposta.</li>
-            <li><strong>Procurar intervalo:</strong> define se a busca será exata ou aproximada.</li>
-        </ul>
+        <!-- HUD DO BOSS -->
+        <div id="bossHud" class="boss-hud hidden">
 
-        <h2>Exemplo prático</h2>
+            <div class="boss-name" id="bossName">
+                BOSS
+            </div>
 
-        <p>
-            Imagine que uma loja tenha esta tabela de produtos:
-        </p>
+            <div class="boss-bar-container">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>101</td><td>Teclado</td><td>R$ 120,00</td></tr>
-                <tr><td>102</td><td>Mouse</td><td>R$ 65,00</td></tr>
-                <tr><td>103</td><td>Monitor</td><td>R$ 850,00</td></tr>
-                <tr><td>104</td><td>Headset</td><td>R$ 180,00</td></tr>
-            </tbody>
-        </table>
+                <div id="bossBar" class="boss-bar"></div>
 
-        <p>
-            Se quisermos encontrar o preço do produto de código 103,
-            podemos utilizar:
-        </p>
+            </div>
 
-        <div class="code-example">
-            <code>=PROCV(103; A2:C5; 3; FALSO)</code>
+            <div class="boss-hp-text">
+                HP:
+                <span id="bossHpText">0</span>
+            </div>
+
         </div>
 
-        <div class="result">
-            <span>RESULTADO ENCONTRADO</span>
-            <strong>R$ 850,00</strong>
-            <p>O Excel localizou o código 103 e retornou o preço do monitor.</p>
+
+        <!-- AVISO DE BOSS -->
+        <div id="bossWarning" class="boss-warning hidden">
+            ⚠️ BOSS À CAMINHO ⚠️
         </div>
 
-        <h2>O que significa o FALSO?</h2>
 
-        <p>
-            O último argumento é muito importante. Quando usamos
-            <strong>FALSO</strong>, o Excel procura uma correspondência
-            exata. Isso significa que o resultado só será encontrado
-            se o valor procurado existir na tabela.
-        </p>
+        <!-- CONTROLES MOBILE -->
+        <div id="mobileControls">
 
-        <p>
-            Já o argumento <strong>VERDADEIRO</strong> permite uma busca
-            aproximada e exige que a primeira coluna esteja organizada
-            em ordem crescente.
-        </p>
+            <button
+                id="mobileLeft"
+                class="mobile-control move-button">
+                🗿
+            </button>
 
-        <h2>Erros comuns ao utilizar o PROCV</h2>
+            <button
+                id="mobileShoot"
+                class="mobile-control shoot-button">
+                🔥
+            </button>
 
-        <p>Alguns problemas podem impedir que a fórmula funcione:</p>
+            <button
+                id="mobileRight"
+                class="mobile-control move-button">
+                💩
+            </button>
 
-        <ul>
-            <li><strong>#N/D:</strong> o valor procurado não foi encontrado.</li>
-            <li><strong>#REF!:</strong> o número da coluna indicado é inválido.</li>
-            <li><strong>#VALOR!:</strong> algum argumento da fórmula está incorreto.</li>
-            <li><strong>Resultado errado:</strong> pode ocorrer quando a busca aproximada é usada sem necessidade.</li>
-        </ul>
+        </div>
 
-        <h2>PROCV ou PROCX: qual escolher?</h2>
+    </div>
 
-        <p>
-            O PROCV é bastante conhecido, mas versões mais recentes do
-            Excel também oferecem a função PROCX.
-        </p>
 
-        <p>
-            A PROCX permite procurar dados em diferentes direções e
-            oferece mais flexibilidade. Porém, o PROCV ainda é útil
-            para trabalhar com planilhas antigas e modelos que já
-            utilizam essa fórmula.
-        </p>
+    <!-- GAME OVER -->
+    <div id="gameOver" class="screen hidden">
 
-        <h2>Conclusão</h2>
+        <div class="gameover-content">
 
-        <p>
-            Aprender a utilizar o PROCV pode facilitar muito o trabalho
-            com planilhas. A função economiza tempo, reduz buscas
-            manuais e ajuda a organizar informações.
-        </p>
+            <h1>💥 PERDEU FI</h1>
 
-        <p>
-            Com um pouco de prática, você poderá utilizar esse recurso
-            em listas de produtos, cadastros, relatórios e diversas
-            outras atividades.
-        </p>
+            <p>
+                Pontuação:
+                <strong id="finalScore">0</strong>
+            </p>
 
-    </article>
+            <p>
+                Recorde:
+                <strong id="finalHighScore">0</strong>
+            </p>
 
-    <footer>
-        <div class="logo">planilha<span>hoje</span></div>
-        <p>Informação simples para o seu dia a dia.</p>
-        <p>© 2026 Planilha Hoje. Projeto demonstrativo educacional.</p>
-    </footer>
+            <button id="restartBtn" class="main-btn">
+                JOGAR NOVAMENTE
+            </button>
 
-</main>
+            <button id="menuBtn" class="secondary-btn">
+                MENU
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RODAPÉ -->
+    <div class="footer-left">
+
+        <strong>Versão:</strong>
+
+        <br>
+
+        V1.0.2.2
+
+        <br>
+
+    
+
+        <br>
+
+       
+
+        <br>
+
+       
+
+    </div>
+
+
+    <div class="footer-right">
+
+        Criado e desenvolvido com total auxílio do ChatGPT
+
+    </div>
+
+
+    <!-- ÁUDIOS -->
+
+    <audio id="menuMusic" loop preload="auto">
+
+        <source
+            src="music/MS1stM.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <audio id="gameMusic" loop preload="auto">
+
+        <source
+            src="music/NoSurprises.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <audio id="laserSound" preload="auto">
+
+        <source
+            src="music/laser.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
