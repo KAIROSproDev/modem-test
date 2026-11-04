@@ -1,334 +1,1086 @@
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    /* Evita zoom/gestos acidentais no jogo */
+    touch-action: none;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #292d32;
-    background: #ffffff;
-    line-height: 1.7;
+    position: relative;
 }
 
-.header {
-    height: 70px;
-    border-bottom: 1px solid #eeeeee;
+
+/* =========================
+   UTILIDADES
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.screen {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+#menu {
     display: flex;
+
     align-items: center;
-    justify-content: space-between;
-    padding: 0 9%;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #101b30 0%,
+            #050810 45%,
+            #000 100%
+        );
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: #202b3c;
+.menu-content {
+    text-align: center;
+
+    width: min(700px, 90%);
 }
 
-.logo span {
-    color: #16834a;
-}
+.menu-content h1 {
+    font-size: clamp(40px, 7vw, 82px);
 
-.header nav {
-    display: flex;
-    gap: 28px;
-}
-
-.header nav a {
-    text-decoration: none;
-    color: #555;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.header nav a:hover {
-    color: #16834a;
-}
-
-.container {
-    max-width: 820px;
-    margin: 55px auto;
-    padding: 0 25px;
-}
-
-.category {
-    color: #16834a;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1.3px;
     margin-bottom: 20px;
-}
 
-h1 {
-    font-size: 37px;
-    line-height: 1.22;
-    letter-spacing: -1.2px;
-    color: #202b3c;
-    margin-bottom: 18px;
+    color: #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff,
+        0 0 50px rgba(0, 234, 255, 0.6);
 }
 
 .subtitle {
-    color: #737b85;
-    font-size: 17px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
+    font-size: 18px;
 
-.author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 25px 0 10px;
-}
+    color: #b8c7d9;
 
-.avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #e1f2e7;
-    color: #16834a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 13px;
-}
-
-.author strong,
-.author span {
-    display: block;
-}
-
-.author strong {
-    font-size: 13px;
-}
-
-.author span {
-    color: #858b94;
-    font-size: 11px;
-}
-
-.article-info {
-    font-size: 11px;
-    color: #8b929b;
-    margin-left: 54px;
-    margin-bottom: 30px;
-}
-
-.hero {
-    min-height: 190px;
-    background: #e9f5ed;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    padding: 30px 45px;
-    gap: 30px;
     margin-bottom: 35px;
 }
 
-.excel-icon {
-    width: 95px;
-    height: 105px;
-    background: #16834a;
+
+/* =========================
+   BOTÕES
+========================= */
+
+.main-btn {
+    border: 2px solid #00eaff;
+
+    background: rgba(0, 234, 255, 0.08);
+
+    color: #00eaff;
+
+    padding: 15px 45px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+
+    text-shadow: 0 0 8px #00eaff;
+
+    box-shadow:
+        0 0 10px rgba(0, 234, 255, 0.25),
+        inset 0 0 10px rgba(0, 234, 255, 0.08);
+}
+
+.main-btn:hover {
+    background: rgba(0, 234, 255, 0.2);
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 30px rgba(0, 234, 255, 0.35);
+}
+
+.secondary-btn {
+    margin-top: 15px;
+
+    padding: 10px 30px;
+
+    background: transparent;
+
+    border: 1px solid #777;
+
+    color: #aaa;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.secondary-btn:hover {
     color: white;
-    font-size: 55px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 8px 8px 0 #0d6436;
+
+    border-color: white;
 }
 
-.hero span {
-    color: #16834a;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1.4px;
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controls {
+    margin-top: 50px;
+
+    color: #8795a8;
+
+    line-height: 1.8;
 }
 
-.hero h2 {
-    font-size: 27px;
-    color: #202b3c;
-    margin: 5px 0;
-}
+.controls h3 {
+    color: #00eaff;
 
-.hero p {
-    color: #65756a;
-    font-size: 13px;
-}
-
-article {
-    font-size: 15px;
-    color: #454b53;
-}
-
-article p {
-    margin-bottom: 20px;
-}
-
-article h2 {
-    color: #202b3c;
-    font-size: 24px;
-    margin-top: 38px;
-    margin-bottom: 15px;
-    line-height: 1.3;
-}
-
-article ul {
-    padding-left: 25px;
-    margin: 15px 0 25px;
-}
-
-article li {
-    padding-left: 4px;
-    margin-bottom: 9px;
-}
-
-.formula {
-    background: #f2f6f3;
-    border-left: 4px solid #16834a;
-    padding: 18px;
-    border-radius: 5px;
-    margin: 20px 0;
-    overflow-x: auto;
-}
-
-.formula span,
-.result span {
-    display: block;
-    font-size: 10px;
-    color: #16834a;
-    font-weight: bold;
-    letter-spacing: 1px;
     margin-bottom: 8px;
 }
 
-.formula code,
-.code-example code {
-    font-family: Consolas, monospace;
-    font-size: 13px;
-    color: #23613e;
-    white-space: nowrap;
+.mobile-controls-text {
+    display: none;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0 25px;
-    font-size: 13px;
-    text-align: left;
-}
 
-th {
-    background: #16834a;
+/* =========================
+   BOTÃO SOM
+========================= */
+
+.sound-btn {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    z-index: 10000;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    border: 1px solid #00eaff;
+
+    border-radius: 50%;
+
     color: white;
-    padding: 12px;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-td {
-    padding: 12px;
-    border-bottom: 1px solid #e7e9e8;
+.sound-btn:hover {
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 10px #00eaff;
 }
 
-tr:nth-child(even) {
-    background: #f6f9f7;
-}
 
-.code-example {
-    padding: 17px;
-    background: #202b3c;
-    border-radius: 7px;
-    overflow-x: auto;
-    margin: 20px 0;
-}
+/* =========================
+   TELA CHEIA
+========================= */
 
-.code-example code {
-    color: #a9e7bd;
-}
+.fullscreen-btn {
+    display: none;
 
-.result {
-    background: #edf7ef;
+    position: fixed;
+
+    top: 20px;
+    right: 78px;
+
+    width: 38px;
+    height: 38px;
+
+    z-index: 10000;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    border: 1px solid #00eaff;
+
     border-radius: 8px;
-    padding: 20px;
-    margin: 25px 0;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
 }
 
-.result strong {
-    display: block;
-    color: #16834a;
-    font-size: 28px;
+
+/* =========================
+   POPUP
+========================= */
+
+.welcome-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.82);
+
+    backdrop-filter: blur(5px);
 }
 
-.result p {
-    font-size: 12px;
-    color: #64766a;
-    margin: 5px 0 0;
-}
+.welcome-box {
+    position: relative;
 
-footer {
-    border-top: 1px solid #eeeeee;
-    margin-top: 65px;
-    padding: 35px 0;
+    width: min(460px, 90%);
+
+    padding: 35px;
+
     text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #05070c
+        );
+
+    border: 1px solid #00eaff;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 20px rgba(0, 234, 255, 0.25),
+        0 0 70px rgba(0, 0, 0, 0.8);
 }
 
-footer .logo {
+.welcome-icon {
+    font-size: 50px;
+
     margin-bottom: 10px;
 }
 
-footer p {
-    color: #888;
-    font-size: 11px;
-    margin-top: 5px;
+.welcome-box h2 {
+    color: #00eaff;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 10px #00eaff;
 }
 
-@media (max-width: 650px) {
-    .header {
-        padding: 0 20px;
+.welcome-box p {
+    color: #c6d0dc;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+}
+
+.welcome-warning {
+    color: #ffb300 !important;
+
+    font-weight: bold;
+}
+
+.welcome-close {
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #aaa;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.welcome-close:hover {
+    color: white;
+}
+
+.welcome-btn {
+    margin-top: 10px;
+
+    padding: 13px 28px;
+
+    border: 1px solid #00eaff;
+
+    background: #00eaff;
+
+    color: #001014;
+
+    font-weight: bold;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.welcome-btn:hover {
+    transform: scale(1.04);
+
+    box-shadow:
+        0 0 15px #00eaff;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+#game {
+    background: #000;
+}
+
+#gameCanvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: #000;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+#hud {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+
+    gap: 20px;
+
+    z-index: 100;
+}
+
+.hud-item {
+    padding: 8px 12px;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    border: 1px solid rgba(0, 234, 255, 0.4);
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    color: #aaa;
+}
+
+.hud-item span {
+    color: #00eaff;
+
+    font-weight: bold;
+
+    margin-left: 4px;
+}
+
+.hud-item.power {
+    border-color: rgba(255, 210, 0, 0.6);
+}
+
+.hud-item.power span {
+    color: #ffd000;
+}
+
+
+/* =========================
+   BOSS HUD
+========================= */
+
+.boss-hud {
+    position: absolute;
+
+    top: 80px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(550px, 70%);
+
+    text-align: center;
+
+    z-index: 100;
+}
+
+.boss-name {
+    color: #ff3030;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    text-shadow:
+        0 0 10px #ff0000;
+}
+
+.boss-bar-container {
+    height: 18px;
+
+    border: 2px solid #ff3030;
+
+    background: #190000;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 12px rgba(255, 0, 0, 0.4);
+}
+
+.boss-bar {
+    height: 100%;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #ff6a00
+        );
+
+    transition: width 0.1s;
+}
+
+.boss-hp-text {
+    margin-top: 5px;
+
+    color: #ff9999;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOSS WARNING
+========================= */
+
+.boss-warning {
+    position: absolute;
+
+    top: 45%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 500;
+
+    font-size: clamp(30px, 6vw, 70px);
+
+    color: #ff2020;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 10px red,
+        0 0 30px red;
+
+    animation:
+        bossWarning 0.5s infinite alternate;
+}
+
+@keyframes bossWarning {
+
+    from {
+
+        opacity: 0.5;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.98);
+
     }
 
-    .header nav {
+    to {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.03);
+
+    }
+
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+#gameOver {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+}
+
+.gameover-content {
+
+    text-align: center;
+}
+
+.gameover-content h1 {
+
+    font-size: clamp(45px, 8vw, 90px);
+
+    color: #ff3030;
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 15px red;
+}
+
+.gameover-content p {
+
+    color: #aaa;
+
+    margin: 8px;
+
+    font-size: 18px;
+}
+
+.gameover-content strong {
+
+    color: white;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.footer-left,
+.footer-right {
+
+    position: fixed;
+
+    bottom: 12px;
+
+    z-index: 1000;
+
+    color: #596675;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    pointer-events: none;
+}
+
+.footer-left {
+
+    left: 15px;
+}
+
+.footer-right {
+
+    right: 15px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   CONTROLES MOBILE
+========================================================= */
+
+#mobileControls {
+
+    display: none;
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+
+    bottom: 25px;
+
+    width: 100%;
+
+    padding:
+        0 20px;
+
+    z-index: 1000;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.mobile-control {
+
+    pointer-events: auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    color: white;
+
+    border: 2px solid #00eaff;
+
+    box-shadow:
+        0 0 10px rgba(0, 234, 255, 0.25);
+
+    -webkit-tap-highlight-color: transparent;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    touch-action: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.08s,
+        background 0.08s;
+}
+
+.mobile-control:active {
+
+    transform: scale(0.9);
+
+    background:
+        rgba(0, 234, 255, 0.25);
+}
+
+.move-button {
+
+    width: 70px;
+    height: 70px;
+
+    font-size: 28px;
+}
+
+.shoot-button {
+
+    width: 82px;
+    height: 82px;
+
+    font-size: 30px;
+
+    border-color: #ff3030;
+
+    box-shadow:
+        0 0 12px rgba(255, 48, 48, 0.35);
+}
+
+.shoot-button:active {
+
+    background:
+        rgba(255, 48, 48, 0.3);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    #hud {
+
+        top: 10px;
+        left: 10px;
+
+        gap: 5px;
+
+        flex-wrap: wrap;
+    }
+
+    .hud-item {
+
+        font-size: 11px;
+
+        padding: 5px 7px;
+    }
+
+    .boss-hud {
+
+        top: 75px;
+
+        width: 85%;
+    }
+
+    .footer-left,
+    .footer-right {
+
+        font-size: 8px;
+    }
+
+    /* Botão tela cheia */
+
+    .fullscreen-btn {
+
+        display: flex;
+    }
+
+    /* Controles */
+
+    #mobileControls {
+
+        display: flex;
+    }
+
+    /* Controles do menu */
+
+    .pc-controls {
+
         display: none;
     }
 
-    .container {
-        margin-top: 35px;
-        padding: 0 18px;
+    .mobile-controls-text {
+
+        display: block;
     }
 
-    h1 {
-        font-size: 29px;
+    /* Menu menor em telas pequenas */
+
+    .menu-content h1 {
+
+        font-size: clamp(
+            32px,
+            10vw,
+            55px
+        );
     }
 
     .subtitle {
+
         font-size: 15px;
+
+        margin-bottom: 25px;
     }
 
-    .hero {
-        padding: 22px;
-        gap: 20px;
+    .controls {
+
+        margin-top: 30px;
     }
 
-    .excel-icon {
+    /* Popup */
+
+    .welcome-box {
+
+        padding: 28px 22px;
+    }
+
+}
+
+
+/* =========================
+   CELULAR EM PAISAGEM
+========================= */
+
+@media (
+    max-width: 900px
+) and (
+    orientation: landscape
+) {
+
+    #mobileControls {
+
+        bottom: 12px;
+
+        padding:
+            0 25px;
+    }
+
+    .move-button {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 24px;
+    }
+
+    .shoot-button {
+
         width: 70px;
-        height: 80px;
-        font-size: 40px;
-        flex-shrink: 0;
+        height: 70px;
+
+        font-size: 26px;
     }
 
-    .hero h2 {
-        font-size: 21px;
+    #hud {
+
+        top: 8px;
+        left: 8px;
     }
 
-    article {
-        font-size: 14px;
+    .hud-item {
+
+        font-size: 10px;
+
+        padding: 4px 6px;
     }
 
-    article h2 {
-        font-size: 21px;
+}
+
+#planilhaOpenButton {
+    position: fixed;
+    right: 20px;
+    bottom: 18px;
+    z-index: 20000;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 234, 255, 0.55);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #9eabb8;
+    font: 11px Arial, Helvetica, sans-serif;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    opacity: 0.72;
+    transition: 0.2s;
+}
+
+#planilhaOpenButton:hover {
+    opacity: 1;
+    color: #00eaff;
+    border-color: #00eaff;
+    box-shadow: 0 0 10px rgba(0, 234, 255, 0.25);
+}
+
+#planilhaSiteOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 30000;
+    display: none;
+    background: #f4f6f8;
+    color: #253044;
+    font-family: Arial, Helvetica, sans-serif;
+    touch-action: pan-y;
+}
+
+#planilhaSiteOverlay.planilha-visible {
+    display: block;
+}
+
+#planilhaSiteOverlay * {
+    box-sizing: border-box;
+}
+
+#planilhaSiteOverlay .ph-top {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e9ef;
+    padding: 17px 22px;
+}
+
+#planilhaSiteOverlay .ph-nav {
+    max-width: 1050px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+#planilhaSiteOverlay .ph-logo {
+    color: #1b7659;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+#planilhaSiteOverlay .ph-links {
+    color: #657184;
+    font-size: 13px;
+}
+
+#planilhaSiteOverlay .ph-page {
+    height: calc(100% - 62px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+}
+
+#planilhaSiteOverlay .ph-article {
+    max-width: 850px;
+    margin: 36px auto 70px;
+    padding: 0 24px;
+    line-height: 1.75;
+    font-size: 16px;
+}
+
+#planilhaSiteOverlay .ph-category {
+    color: #21805f;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+}
+
+#planilhaSiteOverlay h1 {
+    margin: 10px 0 14px;
+    color: #202b3c;
+    font-size: clamp(29px, 5vw, 43px);
+    line-height: 1.16;
+}
+
+#planilhaSiteOverlay .ph-meta {
+    color: #788496;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+#planilhaSiteOverlay h2 {
+    color: #26364b;
+    font-size: 24px;
+    margin: 30px 0 10px;
+}
+
+#planilhaSiteOverlay p {
+    margin: 12px 0;
+}
+
+#planilhaSiteOverlay .ph-callout {
+    margin: 22px 0;
+    padding: 17px 19px;
+    border-left: 4px solid #25805e;
+    background: #e8f4ee;
+    border-radius: 5px;
+}
+
+#planilhaSiteOverlay .ph-table-wrap {
+    overflow-x: auto;
+    margin: 18px 0;
+}
+
+#planilhaSiteOverlay table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+#planilhaSiteOverlay th, #planilhaSiteOverlay td {
+    border: 1px solid #dce3e9;
+    padding: 10px 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+#planilhaSiteOverlay th {
+    background: #edf3f0;
+    color: #315b49;
+}
+
+#planilhaSiteOverlay code {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: #e9edf2;
+    color: #174f3b;
+    font-family: Consolas, monospace;
+    overflow-wrap: anywhere;
+}
+
+#planilhaSiteOverlay .ph-back {
+    display: inline-block;
+    margin-top: 30px;
+    color: #a4acb8;
+    font-size: 11px;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+#planilhaSiteOverlay .ph-back:hover {
+    color: #25805e;
+    opacity: 1;
+}
+
+#planilhaSiteOverlay .ph-footer {
+    margin-top: 45px;
+    padding: 22px 0;
+    border-top: 1px solid #e0e5ea;
+    color: #8993a1;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    #planilhaOpenButton {
+        right: 12px;
+        bottom: 12px;
+        padding: 7px 9px;
+        font-size: 10px;
     }
+    #planilhaSiteOverlay .ph-top { padding: 14px 16px; }
+    #planilhaSiteOverlay .ph-logo { font-size: 20px; }
+    #planilhaSiteOverlay .ph-links { font-size: 10px; }
+    #planilhaSiteOverlay .ph-article { margin-top: 25px; padding: 0 18px; font-size: 15px; }
 }
