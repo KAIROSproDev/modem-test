@@ -1556,20 +1556,36 @@ console.log(
 const planilhaStyle = document.createElement("style");
 planilhaStyle.textContent = `
 #planilhaOpenButton {
-position: fixed;
-top: 20px;
-left: 20px;
-z-index: 20000;
-padding: 10px 16px;
-border: 1px solid #00eaff;
-border-radius: 6px;
-background: rgba(0, 0, 0, 0.82);
-color: #00eaff;
-font-size: 12px;
-font-weight: bold;
-letter-spacing: 1px;
-cursor: pointer;
-transition: 0.2s;
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 180px !important;
+
+    padding: 10px 16px !important;
+    margin: 0 !important;
+
+    border: 1px solid #00eaff !important;
+    border-radius: 6px !important;
+    background: rgba(0, 0, 0, 0.82) !important;
+    color: #00eaff !important;
+
+    font-size: 12px !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+
+    z-index: 20000 !important;
 }
 #planilhaOpenButton:hover {
 background: rgba(0, 234, 255, 0.16);
