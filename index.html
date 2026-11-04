@@ -1,263 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Nave Escape</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova guia</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BOTÃO DE SOM -->
-    <button id="soundBtn" class="sound-btn">🔊</button>
+    <main class="container">
 
-    <!-- BOTÃO TELA CHEIA - MOBILE -->
-    <button id="fullscreenBtn" class="fullscreen-btn">⛶</button>
-
-
-    <!-- POPUP DE BOAS-VINDAS -->
-    <div id="welcomeOverlay" class="welcome-overlay">
-
-        <div class="welcome-box">
-
-            <button id="closeWelcome" class="welcome-close">✕</button>
-
-            <div class="welcome-icon">🚀</div>
-
-            <h2>BEM-VINDO</h2>
-
-            <p>
-                Prepare-se para sobreviver aos meteoros,
-                enfrentar bosses e tentar chegar aos
-                <strong>2000 pontos...</strong>
-            </p>
-
-            <p class="welcome-warning">
-                ⚠️ O jogo não vai pegar leve.
-            </p>
-
-            <button id="enterGame" class="welcome-btn">
-                ENTRAR NO JOGO
-            </button>
-
+        <div class="google-logo">
+            <span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span>
         </div>
 
-    </div>
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input type="text" id="search" autocomplete="off" autofocus>
+            <span class="mic">🎙</span>
+            <span class="lens">▣</span>
+        </div>
 
-
-    <!-- MENU -->
-    <div id="menu" class="screen">
-
-        <div class="menu-content">
-
-            <h1>🚀 System of Burla</h1>
-
-            <p class="subtitle">
-                Sobreviva aos meteoros, destrua tudo e faça a maior pontuação!
-            </p>
-
-            <button id="startBtn" class="main-btn">
-                JOGAY
-            </button>
-
-            <div class="controls">
-
-                <h3>CONTROLES</h3>
-
-                <p class="pc-controls">
-                    ⬅️ ➡️ ou A / D — Mover
-                </p>
-
-                <p class="pc-controls">
-                    SPACE — Atirar
-                </p>
-
-                <p class="mobile-controls-text">
-                    📱 Toque nos botões para jogar
-                </p>
-
+        <div class="shortcuts" id="shortcuts">
+            <div class="shortcut">
+                <div class="shortcut-icon">G</div>
+                <span>Google</span>
+            </div>
+            <div class="shortcut">
+                <div class="shortcut-icon">▶</div>
+                <span>YouTube</span>
+            </div>
+            <div class="shortcut">
+                <div class="shortcut-icon">W</div>
+                <span>WhatsApp</span>
+            </div>
+            <div class="shortcut">
+                <div class="shortcut-icon">+</div>
+                <span>Adicionar atalho</span>
             </div>
 
         </div>
 
-    </div>
+    </main>
 
-
-    <!-- JOGO -->
-    <div id="game" class="screen hidden">
-
-        <canvas id="gameCanvas"></canvas>
-
-
-        <!-- HUD -->
-        <div id="hud">
-
-            <div class="hud-item">
-                PONTOS:
-                <span id="score">0</span>
-            </div>
-
-            <div class="hud-item">
-                VIDAS:
-                <span id="lives">3</span>
-            </div>
-
-            <div class="hud-item">
-                RECORDE:
-                <span id="highScore">0</span>
-            </div>
-
-            <div class="hud-item power">
-                POWER:
-                <span id="powerLevel">1</span>
-            </div>
-
-        </div>
-
-
-        <!-- HUD DO BOSS -->
-        <div id="bossHud" class="boss-hud hidden">
-
-            <div class="boss-name" id="bossName">
-                BOSS
-            </div>
-
-            <div class="boss-bar-container">
-
-                <div id="bossBar" class="boss-bar"></div>
-
-            </div>
-
-            <div class="boss-hp-text">
-                HP:
-                <span id="bossHpText">0</span>
-            </div>
-
-        </div>
-
-
-        <!-- AVISO DE BOSS -->
-        <div id="bossWarning" class="boss-warning hidden">
-            ⚠️ BOSS À CAMINHO ⚠️
-        </div>
-
-
-        <!-- CONTROLES MOBILE -->
-        <div id="mobileControls">
-
-            <button
-                id="mobileLeft"
-                class="mobile-control move-button">
-                ◀
-            </button>
-
-            <button
-                id="mobileShoot"
-                class="mobile-control shoot-button">
-                🔥
-            </button>
-
-            <button
-                id="mobileRight"
-                class="mobile-control move-button">
-                ▶
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- GAME OVER -->
-    <div id="gameOver" class="screen hidden">
-
-        <div class="gameover-content">
-
-            <h1>💥 PERDEU FI</h1>
-
-            <p>
-                Pontuação:
-                <strong id="finalScore">0</strong>
-            </p>
-
-            <p>
-                Recorde:
-                <strong id="finalHighScore">0</strong>
-            </p>
-
-            <button id="restartBtn" class="main-btn">
-                JOGAR NOVAMENTE
-            </button>
-
-            <button id="menuBtn" class="secondary-btn">
-                MENU
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- RODAPÉ -->
-    <div class="footer-left">
-
-        <strong>Nova Atualização:</strong>
-
-        <br>
-
-        V1.0.2.1
-
-        <br>
-
-        • Versão para celulares
-
-        <br>
-
-        • Mudanças de Style
-
-        <br>
-
-        • Jogabilidade melhorada
-
-    </div>
-
-
-    <div class="footer-right">
-
-        Criado e desenvolvido com total auxílio do ChatGPT
-
-    </div>
-
-
-    <!-- ÁUDIOS -->
-
-    <audio id="menuMusic" loop preload="auto">
-
-        <source
-            src="music/MS1stM.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
-
-    <audio id="gameMusic" loop preload="auto">
-
-        <source
-            src="music/NoSurprises.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
-
-    <audio id="laserSound" preload="auto">
-
-        <source
-            src="music/laser.mp3"
-            type="audio/mpeg">
-
-    </audio>
-
+    <button class="customize">Personalizar o Chrome</button>
 
     <script src="script.js"></script>
 
