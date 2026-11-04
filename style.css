@@ -12,6 +12,8 @@ body {
     background: #000;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+
+    /* Evita zoom/gestos acidentais no jogo */
     touch-action: none;
 }
 
@@ -19,38 +21,61 @@ body {
     position: relative;
 }
 
+
+/* =========================
+   UTILIDADES
+========================= */
+
 .hidden {
     display: none !important;
 }
 
+
+/* =========================
+   TELAS
+========================= */
+
 .screen {
     position: absolute;
     inset: 0;
+
     width: 100%;
     height: 100%;
 }
 
+
+/* =========================
+   MENU
+========================= */
+
 #menu {
     display: flex;
+
     align-items: center;
     justify-content: center;
-    background: radial-gradient(
-        circle at center,
-        #101b30 0%,
-        #050810 45%,
-        #000 100%
-    );
+
+    background:
+        radial-gradient(
+            circle at center,
+            #101b30 0%,
+            #050810 45%,
+            #000 100%
+        );
 }
 
 .menu-content {
     text-align: center;
+
     width: min(700px, 90%);
 }
 
 .menu-content h1 {
     font-size: clamp(40px, 7vw, 82px);
+
     margin-bottom: 20px;
+
     color: #00eaff;
+
     text-shadow:
         0 0 10px #00eaff,
         0 0 25px #00eaff,
@@ -59,21 +84,38 @@ body {
 
 .subtitle {
     font-size: 18px;
+
     color: #b8c7d9;
+
     margin-bottom: 35px;
 }
 
+
+/* =========================
+   BOTÕES
+========================= */
+
 .main-btn {
     border: 2px solid #00eaff;
+
     background: rgba(0, 234, 255, 0.08);
+
     color: #00eaff;
+
     padding: 15px 45px;
+
     font-size: 20px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     border-radius: 8px;
+
     transition: 0.2s;
+
     text-shadow: 0 0 8px #00eaff;
+
     box-shadow:
         0 0 10px rgba(0, 234, 255, 0.25),
         inset 0 0 10px rgba(0, 234, 255, 0.08);
@@ -81,7 +123,9 @@ body {
 
 .main-btn:hover {
     background: rgba(0, 234, 255, 0.2);
+
     transform: scale(1.05);
+
     box-shadow:
         0 0 15px #00eaff,
         0 0 30px rgba(0, 234, 255, 0.35);
@@ -89,27 +133,42 @@ body {
 
 .secondary-btn {
     margin-top: 15px;
+
     padding: 10px 30px;
+
     background: transparent;
+
     border: 1px solid #777;
+
     color: #aaa;
+
     border-radius: 6px;
+
     cursor: pointer;
 }
 
 .secondary-btn:hover {
     color: white;
+
     border-color: white;
 }
 
+
+/* =========================
+   CONTROLES
+========================= */
+
 .controls {
     margin-top: 50px;
+
     color: #8795a8;
+
     line-height: 1.8;
 }
 
 .controls h3 {
     color: #00eaff;
+
     margin-bottom: 8px;
 }
 
@@ -117,68 +176,120 @@ body {
     display: none;
 }
 
+
+/* =========================
+   BOTÃO SOM
+========================= */
+
 .sound-btn {
     position: fixed;
+
     top: 20px;
     right: 20px;
+
     width: 48px;
     height: 48px;
+
     z-index: 10000;
+
     background: rgba(0, 0, 0, 0.65);
+
     border: 1px solid #00eaff;
+
     border-radius: 50%;
+
     color: white;
+
     font-size: 21px;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
 .sound-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px #00eaff;
+
+    box-shadow:
+        0 0 10px #00eaff;
 }
+
+
+/* =========================
+   TELA CHEIA
+========================= */
 
 .fullscreen-btn {
     display: none;
+
     position: fixed;
+
     top: 20px;
     right: 78px;
+
     width: 38px;
     height: 38px;
+
     z-index: 10000;
+
     background: rgba(0, 0, 0, 0.65);
+
     border: 1px solid #00eaff;
+
     border-radius: 8px;
+
     color: white;
+
     font-size: 20px;
+
     cursor: pointer;
+
     align-items: center;
     justify-content: center;
 }
 
+
+/* =========================
+   POPUP
+========================= */
+
 .welcome-overlay {
     position: fixed;
+
     inset: 0;
+
     z-index: 9000;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     background: rgba(0, 0, 0, 0.82);
+
     backdrop-filter: blur(5px);
 }
 
 .welcome-box {
     position: relative;
+
     width: min(460px, 90%);
+
     padding: 35px;
+
     text-align: center;
-    background: linear-gradient(
-        145deg,
-        #111827,
-        #05070c
-    );
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #05070c
+        );
+
     border: 1px solid #00eaff;
+
     border-radius: 12px;
+
     box-shadow:
         0 0 20px rgba(0, 234, 255, 0.25),
         0 0 70px rgba(0, 0, 0, 0.8);
@@ -186,35 +297,49 @@ body {
 
 .welcome-icon {
     font-size: 50px;
+
     margin-bottom: 10px;
 }
 
 .welcome-box h2 {
     color: #00eaff;
+
     font-size: 30px;
+
     margin-bottom: 15px;
-    text-shadow: 0 0 10px #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff;
 }
 
 .welcome-box p {
     color: #c6d0dc;
+
     line-height: 1.6;
+
     margin-bottom: 15px;
 }
 
 .welcome-warning {
     color: #ffb300 !important;
+
     font-weight: bold;
 }
 
 .welcome-close {
     position: absolute;
+
     top: 10px;
     right: 12px;
+
     background: transparent;
+
     border: none;
+
     color: #aaa;
+
     font-size: 22px;
+
     cursor: pointer;
 }
 
@@ -224,20 +349,35 @@ body {
 
 .welcome-btn {
     margin-top: 10px;
+
     padding: 13px 28px;
+
     border: 1px solid #00eaff;
+
     background: #00eaff;
+
     color: #001014;
+
     font-weight: bold;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
 .welcome-btn:hover {
     transform: scale(1.04);
-    box-shadow: 0 0 15px #00eaff;
+
+    box-shadow:
+        0 0 15px #00eaff;
 }
+
+
+/* =========================
+   CANVAS
+========================= */
 
 #game {
     background: #000;
@@ -245,32 +385,50 @@ body {
 
 #gameCanvas {
     display: block;
+
     width: 100%;
     height: 100%;
+
     background: #000;
 }
 
+
+/* =========================
+   HUD
+========================= */
+
 #hud {
     position: absolute;
+
     top: 20px;
     left: 20px;
+
     display: flex;
+
     gap: 20px;
+
     z-index: 100;
 }
 
 .hud-item {
     padding: 8px 12px;
+
     background: rgba(0, 0, 0, 0.5);
+
     border: 1px solid rgba(0, 234, 255, 0.4);
+
     border-radius: 5px;
+
     font-size: 14px;
+
     color: #aaa;
 }
 
 .hud-item span {
     color: #00eaff;
+
     font-weight: bold;
+
     margin-left: 4px;
 }
 
@@ -282,225 +440,379 @@ body {
     color: #ffd000;
 }
 
+
+/* =========================
+   BOSS HUD
+========================= */
+
 .boss-hud {
     position: absolute;
+
     top: 80px;
+
     left: 50%;
+
     transform: translateX(-50%);
+
     width: min(550px, 70%);
+
     text-align: center;
+
     z-index: 100;
 }
 
 .boss-name {
     color: #ff3030;
+
     font-size: 20px;
+
     font-weight: bold;
+
     margin-bottom: 7px;
-    text-shadow: 0 0 10px #ff0000;
+
+    text-shadow:
+        0 0 10px #ff0000;
 }
 
 .boss-bar-container {
     height: 18px;
+
     border: 2px solid #ff3030;
+
     background: #190000;
+
     border-radius: 10px;
+
     overflow: hidden;
-    box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+
+    box-shadow:
+        0 0 12px rgba(255, 0, 0, 0.4);
 }
 
 .boss-bar {
     height: 100%;
+
     width: 100%;
-    background: linear-gradient(
-        90deg,
-        #ff0000,
-        #ff6a00
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #ff6a00
+        );
+
     transition: width 0.1s;
 }
 
 .boss-hp-text {
     margin-top: 5px;
+
     color: #ff9999;
+
     font-size: 13px;
 }
 
+
+/* =========================
+   BOSS WARNING
+========================= */
+
 .boss-warning {
     position: absolute;
+
     top: 45%;
     left: 50%;
+
     transform: translate(-50%, -50%);
+
     z-index: 500;
+
     font-size: clamp(30px, 6vw, 70px);
+
     color: #ff2020;
+
     font-weight: bold;
+
     text-shadow:
         0 0 10px red,
         0 0 30px red;
-    animation: bossWarning 0.5s infinite alternate;
+
+    animation:
+        bossWarning 0.5s infinite alternate;
 }
 
 @keyframes bossWarning {
+
     from {
+
         opacity: 0.5;
+
         transform:
             translate(-50%, -50%)
             scale(0.98);
+
     }
+
     to {
+
         opacity: 1;
+
         transform:
             translate(-50%, -50%)
             scale(1.03);
+
     }
+
 }
 
+
+/* =========================
+   GAME OVER
+========================= */
+
 #gameOver {
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     background: #000;
 }
 
 .gameover-content {
+
     text-align: center;
 }
 
 .gameover-content h1 {
+
     font-size: clamp(45px, 8vw, 90px);
+
     color: #ff3030;
+
     margin-bottom: 20px;
-    text-shadow: 0 0 15px red;
+
+    text-shadow:
+        0 0 15px red;
 }
 
 .gameover-content p {
+
     color: #aaa;
+
     margin: 8px;
+
     font-size: 18px;
 }
 
 .gameover-content strong {
+
     color: white;
 }
 
+
+/* =========================
+   RODAPÉ
+========================= */
+
 .footer-left,
 .footer-right {
+
     position: fixed;
+
     bottom: 12px;
+
     z-index: 1000;
+
     color: #596675;
+
     font-size: 10px;
+
     line-height: 1.4;
+
     pointer-events: none;
 }
 
 .footer-left {
+
     left: 15px;
 }
 
 .footer-right {
+
     right: 15px;
+
     text-align: right;
 }
 
+
+/* =========================================================
+   CONTROLES MOBILE
+========================================================= */
+
 #mobileControls {
+
     display: none;
+
     position: fixed;
+
     left: 0;
     right: 0;
+
     bottom: 25px;
+
     width: 100%;
-    padding: 0 20px;
+
+    padding:
+        0 20px;
+
     z-index: 1000;
+
     align-items: center;
+
     justify-content: space-between;
+
     pointer-events: none;
 }
 
 .mobile-control {
+
     pointer-events: auto;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.55);
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
     color: white;
+
     border: 2px solid #00eaff;
-    box-shadow: 0 0 10px rgba(0, 234, 255, 0.25);
+
+    box-shadow:
+        0 0 10px rgba(0, 234, 255, 0.25);
+
     -webkit-tap-highlight-color: transparent;
+
     user-select: none;
     -webkit-user-select: none;
+
     touch-action: none;
+
     cursor: pointer;
+
     transition:
         transform 0.08s,
         background 0.08s;
 }
 
 .mobile-control:active {
+
     transform: scale(0.9);
-    background: rgba(0, 234, 255, 0.25);
+
+    background:
+        rgba(0, 234, 255, 0.25);
 }
 
 .move-button {
+
     width: 70px;
     height: 70px;
+
     font-size: 28px;
 }
 
 .shoot-button {
+
     width: 82px;
     height: 82px;
+
     font-size: 30px;
+
     border-color: #ff3030;
-    box-shadow: 0 0 12px rgba(255, 48, 48, 0.35);
+
+    box-shadow:
+        0 0 12px rgba(255, 48, 48, 0.35);
 }
 
 .shoot-button:active {
-    background: rgba(255, 48, 48, 0.3);
+
+    background:
+        rgba(255, 48, 48, 0.3);
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 700px) {
+
     #hud {
+
         top: 10px;
         left: 10px;
+
         gap: 5px;
+
         flex-wrap: wrap;
     }
 
     .hud-item {
+
         font-size: 11px;
+
         padding: 5px 7px;
     }
 
     .boss-hud {
+
         top: 75px;
+
         width: 85%;
     }
 
     .footer-left,
     .footer-right {
+
         font-size: 8px;
     }
 
+    /* Botão tela cheia */
+
     .fullscreen-btn {
+
         display: flex;
     }
+
+    /* Controles */
 
     #mobileControls {
+
         display: flex;
     }
 
+    /* Controles do menu */
+
     .pc-controls {
+
         display: none;
     }
 
     .mobile-controls-text {
+
         display: block;
     }
 
+    /* Menu menor em telas pequenas */
+
     .menu-content h1 {
+
         font-size: clamp(
             32px,
             10vw,
@@ -509,50 +821,74 @@ body {
     }
 
     .subtitle {
+
         font-size: 15px;
+
         margin-bottom: 25px;
     }
 
     .controls {
+
         margin-top: 30px;
     }
 
+    /* Popup */
+
     .welcome-box {
+
         padding: 28px 22px;
     }
+
 }
+
+
+/* =========================
+   CELULAR EM PAISAGEM
+========================= */
 
 @media (
     max-width: 900px
 ) and (
     orientation: landscape
 ) {
+
     #mobileControls {
+
         bottom: 12px;
-        padding: 0 25px;
+
+        padding:
+            0 25px;
     }
 
     .move-button {
+
         width: 60px;
         height: 60px;
+
         font-size: 24px;
     }
 
     .shoot-button {
+
         width: 70px;
         height: 70px;
+
         font-size: 26px;
     }
 
     #hud {
+
         top: 8px;
         left: 8px;
     }
 
     .hud-item {
+
         font-size: 10px;
+
         padding: 4px 6px;
     }
+
 }
 
 #planilhaOpenButton {
@@ -691,8 +1027,7 @@ body {
     font-size: 14px;
 }
 
-#planilhaSiteOverlay th,
-#planilhaSiteOverlay td {
+#planilhaSiteOverlay th, #planilhaSiteOverlay td {
     border: 1px solid #dce3e9;
     padding: 10px 12px;
     text-align: left;
@@ -744,22 +1079,8 @@ body {
         padding: 7px 9px;
         font-size: 10px;
     }
-
-    #planilhaSiteOverlay .ph-top {
-        padding: 14px 16px;
-    }
-
-    #planilhaSiteOverlay .ph-logo {
-        font-size: 20px;
-    }
-
-    #planilhaSiteOverlay .ph-links {
-        font-size: 10px;
-    }
-
-    #planilhaSiteOverlay .ph-article {
-        margin-top: 25px;
-        padding: 0 18px;
-        font-size: 15px;
-    }
+    #planilhaSiteOverlay .ph-top { padding: 14px 16px; }
+    #planilhaSiteOverlay .ph-logo { font-size: 20px; }
+    #planilhaSiteOverlay .ph-links { font-size: 10px; }
+    #planilhaSiteOverlay .ph-article { margin-top: 25px; padding: 0 18px; font-size: 15px; }
 }
