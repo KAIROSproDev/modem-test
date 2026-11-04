@@ -1758,9 +1758,6 @@ planilhaSiteOverlay.innerHTML = `
 <div class="ph-logo">
 Planilha<span>Hoje</span>
 </div>
-<button class="ph-back" type="button">
-← VOLTAR AO JOGO
-</button>
 </header>
 <main class="ph-page">
 <div class="ph-category">
