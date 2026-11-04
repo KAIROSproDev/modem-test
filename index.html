@@ -7,47 +7,89 @@
     <title>Nova guia</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <main class="container">
+    <header class="topbar">
+        <div class="top-links">
+            <a href="#">Gmail</a>
+            <a href="#">Imagens</a>
+            <button class="apps" aria-label="Aplicativos Google">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="5" cy="5" r="1.7"/>
+                    <circle cx="12" cy="5" r="1.7"/>
+                    <circle cx="19" cy="5" r="1.7"/>
+                    <circle cx="5" cy="12" r="1.7"/>
+                    <circle cx="12" cy="12" r="1.7"/>
+                    <circle cx="19" cy="12" r="1.7"/>
+                    <circle cx="5" cy="19" r="1.7"/>
+                    <circle cx="12" cy="19" r="1.7"/>
+                    <circle cx="19" cy="19" r="1.7"/>
+                </svg>
+            </button>
+            <div class="profile">N</div>
+        </div>
+    </header>
 
-        <div class="google-logo">
-            <span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span>
+    <main class="main">
+
+        <div class="google-logo" aria-label="Google">
+            <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
         </div>
 
         <div class="search-box">
-            <span class="search-icon">⌕</span>
-            <input type="text" id="search" autocomplete="off" autofocus>
-            <span class="mic">🎙</span>
-            <span class="lens">▣</span>
+            <svg class="search-icon" viewBox="0 0 24 24">
+                <circle cx="10.8" cy="10.8" r="6.8"/>
+                <path d="m16 16 5 5"/>
+            </svg>
+
+            <input id="search" type="text" autocomplete="off" spellcheck="false">
+
+            <svg class="mic-icon" viewBox="0 0 24 24">
+                <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/>
+                <path d="M19 11a7 7 0 0 1-14 0M12 18v4m-4 0h8"/>
+            </svg>
+
+            <svg class="lens-icon" viewBox="0 0 24 24">
+                <path d="M9 3H5a2 2 0 0 0-2 2v4m12-6h4a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/>
+                <circle cx="11" cy="11" r="3"/>
+                <path d="m14 14 4 4"/>
+            </svg>
         </div>
 
-        <div class="shortcuts" id="shortcuts">
+        <section class="shortcuts">
+
             <div class="shortcut">
-                <div class="shortcut-icon">G</div>
+                <div class="shortcut-icon google">G</div>
                 <span>Google</span>
             </div>
+
             <div class="shortcut">
-                <div class="shortcut-icon">▶</div>
+                <div class="shortcut-icon youtube">▶</div>
                 <span>YouTube</span>
             </div>
+
             <div class="shortcut">
-                <div class="shortcut-icon">W</div>
+                <div class="shortcut-icon whatsapp">◉</div>
                 <span>WhatsApp</span>
             </div>
+
             <div class="shortcut">
-                <div class="shortcut-icon">+</div>
+                <div class="shortcut-icon add">+</div>
                 <span>Adicionar atalho</span>
             </div>
 
-        </div>
+        </section>
 
     </main>
 
-    <button class="customize">Personalizar o Chrome</button>
+    <button class="customize">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4m0-12.8L17 7M7 17l-1.4 1.4"/>
+            <circle cx="12" cy="12" r="4"/>
+        </svg>
+        Personalizar o Chrome
+    </button>
 
     <script src="script.js"></script>
-
 </body>
 </html>

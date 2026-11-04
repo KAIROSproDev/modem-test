@@ -1,96 +1,161 @@
 
-
 * {
-    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body {
-    width: 100%;
     height: 100vh;
-    overflow: hidden;
     background: #fff;
     font-family: Arial, sans-serif;
+    overflow: hidden;
+    color: #202124;
 }
 
-.container {
+.topbar {
+    height: 60px;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    padding-top: 185px;
+    padding: 6px 22px;
+}
+
+.top-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.top-links a {
+    color: #202124;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.top-links a:hover {
+    text-decoration: underline;
+}
+
+.apps {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.apps:hover {
+    background: #f0f0f0;
+}
+
+.apps svg {
+    width: 22px;
+    fill: #5f6368;
+}
+
+.profile {
+    width: 32px;
+    height: 32px;
+    background: #7454b8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 125px;
 }
 
 .google-logo {
+    font-family: Arial, sans-serif;
     font-size: 92px;
     font-weight: 500;
     letter-spacing: -5px;
-    margin-bottom: 30px;
+    line-height: 1;
+    margin-bottom: 28px;
 }
 
-.blue { color: #4285F4; }
-.red { color: #EA4335; }
-.yellow { color: #FBBC05; }
-.green { color: #34A853; }
+.g-blue { color: #4285f4; }
+.g-red { color: #ea4335; }
+.g-yellow { color: #fbbc05; }
+.g-green { color: #34a853; }
 
 .search-box {
-    width: 580px;
+    width: min(584px, calc(100vw - 40px));
     height: 48px;
-    border-radius: 30px;
+    border-radius: 24px;
     background: #f0f4f9;
     display: flex;
-
     align-items: center;
-    padding: 0 18px;
-    gap: 15px;
+    padding: 0 16px;
+    gap: 14px;
+    transition: box-shadow .15s, background .15s;
 }
 
-.search-box:hover {
-    background: #e9eef6;
-    box-shadow: 0 1px 6px #0002;
-}
-
-.search-icon {
-    font-size: 27px;
-    color: #5f6368;
+.search-box:hover,
+.search-box:focus-within {
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
 }
 
 .search-box input {
     flex: 1;
+    min-width: 0;
     height: 100%;
     border: none;
     outline: none;
     background: transparent;
-    font-size: 16px;
     color: #202124;
+    font-size: 16px;
 }
 
-.mic, .lens {
+.search-box svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #5f6368;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.mic-icon {
+    stroke: #4285f4 !important;
     cursor: pointer;
-    font-size: 18px;
+}
+
+.lens-icon {
+    stroke: #4285f4 !important;
+    cursor: pointer;
 }
 
 .shortcuts {
     display: flex;
-
-    gap: 20px;
-    margin-top: 35px;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
 }
 
 .shortcut {
-    width: 90px;
-    height: 100px;
+    width: 112px;
+    height: 112px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    border-radius: 8px;
+    flex-direction: column;
+    gap: 9px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
-    color: #202124;
 }
 
 .shortcut:hover {
@@ -103,21 +168,59 @@ body {
     border-radius: 50%;
     background: #f1f3f4;
     display: flex;
-
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 23px;
+}
+
+.google {
+    color: #4285f4;
+    font-size: 27px;
     font-weight: bold;
 }
 
+.youtube {
+    color: white;
+    background: #ff0033;
+    font-size: 19px;
+}
+
+.whatsapp {
+    color: #25d366;
+    font-size: 28px;
+}
+
+.add {
+    color: #5f6368;
+    font-size: 30px;
+}
+
 .customize {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    height: 36px;
+    padding: 0 15px;
     border: none;
-    border-radius: 25px;
-    padding: 12px 18px;
-    background: #dce8ff;
+    border-radius: 18px;
+    background: #d3e3fd;
     color: #202124;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
     cursor: pointer;
+}
+
+.customize:hover {
+    box-shadow: 0 1px 3px #0002;
+}
+
+.customize svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: #202124;
+    stroke-width: 1.5;
+    stroke-linecap: round;
 }
